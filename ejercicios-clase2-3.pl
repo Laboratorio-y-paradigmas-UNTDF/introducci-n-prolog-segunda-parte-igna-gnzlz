@@ -473,15 +473,10 @@ colorear_triangulo(A, B, C) :-
 % ============================================================
 
 % COMPLETAR: mayores_de/2
-mayores_de(_, []) :- fail.
-mayores_de(Edad, [Nombre|Resto]) :-
-    persona(Nombre, EdadPersona),
-    EdadPersona > Edad,
-    mayores_de(Edad, Resto).
-mayores_de(Edad, [Nombre|Resto]) :-
-    persona(Nombre, EdadPersona),
-    EdadPersona =< Edad,
-    mayores_de(Edad, Resto).
+mayores_de(Edad, Lista) :-
+    setof(Nombre,
+          EdadPersona^(persona(Nombre, EdadPersona), EdadPersona > Edad),
+          Lista).
 
 
 % ============================================================
